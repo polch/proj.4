@@ -2,10 +2,8 @@
 #ifndef lint
 static const char SCCSID[]="@(#)pj_strerrno.c	4.12   94/05/25 GIE REL";
 #endif
-#include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <projects.h>
 	static char *
 pj_err_list[] = {
 	"no arguments in initialization list",	/*  -1 */
@@ -52,7 +50,6 @@ pj_err_list[] = {
 	"|lat_1| == |lat_2|",				/* -42 */
 	"lat_0 is pi/2 from mean lat",			/* -43 */
 	"unparseable coordinate system definition",	/* -44 */
-	"geocentric transformation missing z or ellps",	/* -45 */
 };
 	char *
 pj_strerrno(int err) {

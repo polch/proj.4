@@ -32,7 +32,7 @@ geod_pre(void) {
 			D *= D;
 			P = c2 / D;
 		} else {
-			c1 = geod_f * M;
+			c1 = f * M;
 			c2 = f4 * (1. - M * M);
 			D = (1. - c2)*(1. - c2 - c1 * M);
 			P = (1. + .5 * c1 * M) * c2 / D;
@@ -50,7 +50,7 @@ geod_for(void) {
 	double d,sind,u,V,X,ds,cosds,sinds,ss,de;
 
 	if (ellipse) {
-		d = geod_S / (D * geod_a);
+		d = S / (D * a);
 		if (signS) d = -d;
 		u = 2. * (s1 - d);
 		V = cos(u + d);
@@ -58,7 +58,7 @@ geod_for(void) {
 		ds = d + X - 2. * P * V * (1. - 2. * P * cos(u)) * sind;
 		ss = s1 + s1 - ds;
 	} else {
-		ds = geod_S / geod_a;
+		ds = S / a;
 		if (signS) ds = - ds;
 	}
 	cosds = cos(ds);

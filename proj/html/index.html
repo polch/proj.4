@@ -8,38 +8,24 @@
 This web page relates to the PROJ.4 Cartographic Projections library originally
 written by Gerald Evenden then of the USGS.  The primary version of this
 web page can be found at <a href="http://www.remotesensing.org/proj">
-http://www.remotesensing.org/proj</a>, and mirrored at
-<a href="http://proj.maptools.org">proj.maptools.org</a>.<p>
+http://www.remotesensing.org/proj</a>.<p>
 
 <!---------------------------------------------------------------------------->
 <h2>Download</h2>
 
-The current development source is available by anonymous CVS.  The CVS 
-tree can be 
-<a href="http://www.remotesensing.org/cgi-bin/cvsweb.cgi/osrs/proj/">browsed
-on the web</a> or checked out as the "proj" component from the server 
-":pserver:anonymous@cvs.remotesensing.org:/cvsroot".  For example:<p>
-
-<pre>
-% cvs -d :pserver:anonymous@cvs.remotesensing.org:/cvsroot login
-Password: anonymous
-% cvs -d :pserver:anonymous@cvs.remotesensing.org:/cvsroot co proj
-...
-</pre>
+The current development source is available by anonymous CVS.  It can
+be checked out as the "proj" component.  Review the 
+<a href="http://www.remotesensing.org/docs/howto-cvs.php3">OSRS CVS HOWTO</a>
+if you need more information on using OSRS anonymous CVS.<p>
 
 The following files are available from the 
-<a href="ftp://ftp.remotesensing.org/pub/proj">proj ftp directory</a>
-or <a href="http://proj.maptools.org/dl">http mirror</a>.<p>
+<a href="ftp://ftp.remotesensing.org/pub/proj">proj ftp directory</a>:<p>
 
 <ul>
-<li> <a href="ftp://ftp.remotesensing.org/pub/proj/proj-4.4.7.tar.gz">
-proj-4.4.7.tar.gz</a> or
-<a href="ftp://ftp.remotesensing.org/pub/proj/proj-4.4.7.zip">proj-4.4.7.zip
+<li> <a href="ftp://ftp.remotesensing.org/pub/proj/proj-4.4.2.tar.gz">
+proj-4.4.2.tar.gz</a> or
+<a href="ftp://ftp.remotesensing.org/pub/proj/proj-4.4.2.zip">proj-4.4.2.zip
 </a>: Current source release.<p>
-
-<li> <a href="ftp://ftp.remotesensing.org/pub/proj/proj446_win32_bin.zip">
-proj446_win32_bin.zip</a>: Prebuilt Win32 executables, DLL including 
-NAD27 grid shift files.<p>
 
 <li> 
 <a href="ftp://ftp.remotesensing.org/pub/proj/proj-nad27-1.1.tar.gz">
@@ -52,12 +38,8 @@ configuring to add NAD27/NAD83 datum conversion.<p>
 PROJ.4-4.4.1-1.i586.rpm</a>: Binary distribution for Intel Linux (glibc 2.1).<p>
 
 <li> 
-<a href="http://packages.debian.org/unstable/science/proj.html">
+<a href="http://www.debian.org/Packages/unstable/math/proj.html">
 PROJ.4 in a Debian Package</a>.<p>
-
-<li> 
-<a href="http://www.triplexware.huckfinn.de/geogfix.html#proj">
-PROJ.4 Ported to the Delphi (Borland C++) environment</a>.<p>
 
 <li> <a href="ftp://ftp.remotesensing.org/pub/proj/from_kai/PROJ.4.3.3.tar.gz">PROJ.4.3.3.tar.gz</a>:
 The last PROJ 4.3 release produced by Gerald Evenden (classic PROJ.4).<p>
@@ -66,44 +48,16 @@ The last PROJ 4.3 release produced by Gerald Evenden (classic PROJ.4).<p>
 A snapshot of everything on the kai.er.usgs.gov/pub/PROJ.4 directory as
 of March/2000.<p>
 
-</ul>
-<!---------------------------------------------------------------------------->
-<h2>Documentation</h2>
-
-<ul>
 <li> <a href="ftp://ftp.remotesensing.org/pub/proj/OF90-284.pdf">
-OF90-284.pdf (2.7MB)</a>: The main users manual for PROJ; however, this dates
+OF90-284.pdf (3.9MB)</a>: The main users manual for PROJ; however, this dates
 from PROJ.3 - the addendums 
-<a href="ftp://ftp.remotesensing.org/pub/proj/PROJ.4.3.pdf">PROJ.4.3.pdf (1MB)</a>,
+<a href="ftp://ftp.remotesensing.org/pub/proj/PROJ.4.3.pdf">PROJ.4.3.pdf (1.1MB)</a>,
 <a href="ftp://ftp.remotesensing.org/pub/proj/PROJ.4.3.I2.pdf">PROJ.4.3.I2.pdf (2MB)</a>,
 and 
-<a href="ftp://ftp.remotesensing.org/pub/proj/SWISS.pdf">SWISS.pdf (78KB)</a>
+<a href="ftp://ftp.remotesensing.org/pub/proj/SWISS.pdf">SWISS.pdf (73KB)</a>
 contain important additional information.<p>
 
-<li> Short of having a new manual set, here is a newly formatted set of documentation:
-<ul>
-<li><a href="ftp://ftp.remotesensing.org/pub/proj/new_docs/OF90-284.pdf">OF90-284.pdf (5MB)</a> 
-<li><a href="ftp://ftp.remotesensing.org/pub/proj/new_docs/proj.4.3.pdf">proj.4.3.pdf (2.4MB)</a>
-<li><a href="ftp://ftp.remotesensing.org/pub/proj/new_docs/proj.4.3.I2.pdf">proj.4.3.I2.pdf (2MB)</a>
-<li><a href="ftp://ftp.remotesensing.org/pub/proj/new_docs/swiss.pdf">swiss.pdf (74KB)</a>
-</ul>
-The content is the same as the original set, above, except that these versions have been reformatted to be more legible
-and references within the files are clickable, so it is easier to find your way around. Sadly, they are somewhat
-larger than the originals. This seems to be due to the way the graphics were converted.<p>
-
-<li> <a href="http://members.bellatlantic.net/~vze2hc4d/proj4/">Gerald
-Evenden's PROJ.4 site</a>: includes some updates and documentation for his
-slimmed down <b>libproj</b>.<p>
-
-<li> <a href="man_proj.html">proj</a> command manpage.<p>
-
-<li> <a href="faq.html">PROJ.4 FAQ</a>.<p>
-
-<li> <a href="gen_parms.html">General Parameter Notes</a>.<p>
-
-<li> The <a href="http://www.remotesensing.org/geotiff/proj_list/">Projections 
-List</a> page on the GeoTIFF site includes information on how to describe
-many common projections with PROJ.4 command arguments.<p>
+<li> <a href="man_proj.html">proj</a> command manpage
 
 </ul>
 
@@ -111,15 +65,24 @@ many common projections with PROJ.4 command arguments.<p>
 <h2>Mailing List and Bugs</h2>
 
 <p>
-A mailing list is available for users and developers of PROJ.4 as well as for 
-discussion of general cartographic projections related issues.  Subscription
-and unsubscription can be accomplished at 
-<a href="http://remotesensing.org/mailman/listinfo/proj">
-http://remotesensing.org/mailman/listinfo/proj</a>.  To review previous 
-posts visit the 
+This mailing list is for development and user discussions of the PROJ.4 
+library.  
+<p>
+To <b>subscribe</b> send mail to <a href="mailto:majordomo@remotesensing.org">
+majordomo@remotesensing.org</a>, with no subject.  In the body type:
+<p>
+<tt>subscribe osrs-proj</tt>
+<p>
+To <b>unsubscribe</b> send mail to <a href="mailto:majordomo@remotesensing.org">
+majordomo@remotesensing.org</a>, with no subject, and in the body type:
+<p>
+<tt>unsubscribe osrs-proj</tt>
+<p>
+To post an email to this list, send email to: 
+<a href="mailto:osrs-proj@remotesensing.org">osrs-proj@remotesensing.org</a>.
+To review previous posts visit the 
 <a href="http://www.remotesensing.org/lists/proj_archive/maillist.html">
-web archive</a>.  The PROJ.4 mailing list is also available by NNTP at
-<a href="news://news.gmane.org/gmane.comp.gis.proj-4.devel">news://news.gmane.org/gmane.comp.gis.proj-4.devel</a>.<p>
+web archive</a>.<p>
 
 Bugs <a href="http://bugzilla.remotesensing.org/enter_bug.cgi?product=PROJ.4">
 can be entered</a> and 
@@ -132,8 +95,6 @@ be viewed</a> in BugZilla.<p>
 PROJ.4 is in active use by 
 <a href="http://hgeo02.geog.uni-hannover.de/grass/">GRASS</a>, 
 <a href="http://mapserver.gis.umn.edu/">MapServer</a>, 
-<a href="http://postgis.refractions.net/">PostGIS</a>, 
-<a href="http://thuban.intevation.org/">Thuban</a>, 
 <a href="http://ogdi.sourceforge.net/">OGDI</a> and
 <a href="http://gdal.velocet.ca/projects/opengis/ogrhtml/osr_tutorial.html">
 OGRCoordinateTransformation</a> as well as various other projects (please
@@ -154,9 +115,9 @@ A mapping file (<b>epsg</b>) has also been introduced mapping most EPSG (
 PROJ.4 format.<p>
 
 Future plans for PROJ.4 will hopefully include better online documentation,
-refinement of datum shifting support and extension of the external 
-programming API for greater convenience in handling coordinate systems from 
-applications.<p>
+refinement of datum shifting support, splitting of projects.h into public
+and private components  and extension of the external programming API
+for greater convenience in handling coordinate systems from applications.<p>
 
 If you are a user of PROJ.4, and/or are interested in contributing please
 drop me a line and join the mailing list. <p>
@@ -209,10 +170,11 @@ I did the work.  Essentially all work was done by Gerald Evenden. <p>
 
 <ul>
 
-<li> <a href="http://ftp.dfg.ca.gov/Outgoing/Nafwb/proj4/proj_api.zip">
-PROJ.4 VB Wrappers</a> from Eric G. Miller. <p>
+<li> <a href="http://www.remotesensing.org/geotiff/proj_list/">GeoTIFF
+Projections List</a> which includes relationship of many projections to 
+EPSG, PROJ.4, and OGC standards. <p>
 
-<li> <a href="http://gmt.soest.hawaii.edu/">GMT</a> - Generic
+<li> <a href="http://imina.soest.hawaii.edu/gmt/">GMT</a> - Generic
 Mapping Tools, includes reprojection services.<p>
 
 <li> <a href="http://users.netonecom.net/~rburtch/geodesy/datums.html">
@@ -222,14 +184,11 @@ information.<p>
 <li> <a href="http://edc.usgs.gov/pub/software/gctpc/">GCTPC</a>: The
 other widely used projection package from te USGS.<p>
 
-<li> <a href="http://pweb.jps.net/~egm2/libgeotrans/">Geotrans</a>:
-a projections and datum shift program from NIMA.<p>
+<li> <a href="http://www.remotesensing.org/docs/geotrans.php3">Geotrans</a>:
+a projections and datum shift program from NIMA.  Available from OSRS
+CVS as osrs/geotrans.<p>
 
 <li> <a href="http://www.geocities.com/CapeCanaveral/1224/mapref.html">MapRef</a>: Assorted general information on projections, and related topics.<p>
-
-<li> <a href="http://www.asprs.org/asprs/resources/grids/index.html">Grids & Datums</a>: Clifford J. Mugnier's columns in PE&amp;RS.<p>
-
-<li> <a href="http://earth-info.nima.mil/GandG/pubs.html">NIMA Publications on Geodesy</a>.<p>
 
 </ul>
 

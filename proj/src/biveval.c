@@ -6,7 +6,8 @@ static const char SCCSID[]="@(#)biveval.c	4.4	93/06/12	GIE	REL";
 # define NEAR_ONE	1.00001
 	static projUV
 w2, w;
-static double ceval(struct PW_COEF *C, int n) {
+	static double /* basic bivariate Chebyshev evaluation */
+ceval(C, n) struct PW_COEF *C; {
 	double d=0, dd=0, vd, vdd, tmp, *c;
 	int j;
 

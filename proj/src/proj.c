@@ -52,7 +52,7 @@ facs;
 (*informat)(const char *, char **),	/* input data deformatter function */
 fscale = 0.;	/* cartesian scale factor */
 	static projUV
-int_proj(projUV data) {
+int_proj(data) projUV data; {
 	if (prescale) { data.u *= fscale; data.v *= fscale; }
 	data = (*proj)(data, Proj);
 	if (postscale && data.u != HUGE_VAL)
@@ -301,11 +301,6 @@ int main(int argc, char **argv) {
                     char *str;
 
                     for (lp = pj_list ; lp->id ; ++lp) {
-                        if( strcmp(lp->id,"latlong") == 0 
-                            || strcmp(lp->id,"longlat") == 0 
-                            || strcmp(lp->id,"geocent") == 0 )
-                            continue;
-
                         (void)printf("%s : ", lp->id);
                         if (do_long)  /* possibly multiline description */
                             (void)puts(*lp->descr);
@@ -420,13 +415,6 @@ int main(int argc, char **argv) {
     if (!(Proj = pj_init(pargc, pargv)))
         emess(3,"projection initialization failure\ncause: %s",
               pj_strerrno(pj_errno));
-
-    if( pj_is_latlong( Proj ) )
-    {
-        emess( 3, "+proj=latlong unsuitable for use with proj program." );
-        exit( 0 );
-    }
-
     if (inverse) {
         if (!Proj->inv)
             emess(3,"inverse projection not available");
@@ -434,7 +422,7 @@ int main(int argc, char **argv) {
     } else
         proj = pj_fwd;
     if (cheby_str) {
-        extern void gen_cheb(int, projUV(*)(projUV), char *, PJ *, int, char **);
+        extern void gen_cheb(int, projUV(*)(), char *, PJ *, int, char **);
 
         gen_cheb(inverse, int_proj, cheby_str, Proj, iargc, iargv);
         exit(0);

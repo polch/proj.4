@@ -2,11 +2,11 @@
 static const char SCCSID[]="@(#)geod.c	4.8	95/09/23	GIE	REL";
 #endif
 /* <<<< Geodesic filter program >>>> */
-# include <ctype.h>
-# include <stdio.h>
 # include "projects.h"
+# include <stdio.h>
 # include "geodesic.h"
 # include "emess.h"
+# include <ctype.h>
 # include <string.h>
 
 # define MAXLINE 200
@@ -52,7 +52,7 @@ do_geod(void) {
 	phil = phi2;
 	laml = lam2;
 	printLL(phi1, lam1); putchar('\n');
-	for ( geod_S = del_S = geod_S / n_S; --n_S; geod_S += del_S) {
+	for ( S = del_S = S / n_S; --n_S; S += del_S) {
 		geod_for();
 		printLL(phi2, lam2); putchar('\n');
 	}
@@ -84,7 +84,7 @@ process(FILE *fid) {
 			geod_inv();
 		} else {
 			al12 = dmstor(s, &s);
-			geod_S = strtod(s, &s) * to_meter;
+			S = strtod(s, &s) * to_meter;
 			geod_pre();
 			geod_for();
 		}
@@ -99,21 +99,21 @@ process(FILE *fid) {
 			if (oform) {
 				(void)printf(oform, al12 * RAD_TO_DEG); TAB;
 				(void)printf(oform, al21 * RAD_TO_DEG); TAB;
-				(void)printf(osform, geod_S * fr_meter);
+				(void)printf(osform, S * fr_meter);
 			}  else {
 				(void)fputs(rtodms(pline, al12, 0, 0), stdout); TAB;
 				(void)fputs(rtodms(pline, al21, 0, 0), stdout); TAB;
-				(void)printf(osform, geod_S * fr_meter);
+				(void)printf(osform, S * fr_meter);
 			}
 		} else if (inverse)
 			if (oform) {
 				(void)printf(oform, al12 * RAD_TO_DEG); TAB;
 				(void)printf(oform, al21 * RAD_TO_DEG); TAB;
-				(void)printf(osform, geod_S * fr_meter);
+				(void)printf(osform, S * fr_meter);
 			} else {
 				(void)fputs(rtodms(pline, al12, 0, 0), stdout); TAB;
 				(void)fputs(rtodms(pline, al21, 0, 0), stdout); TAB;
-				(void)printf(osform, geod_S * fr_meter);
+				(void)printf(osform, S * fr_meter);
 			}
 		else {
 			printLL(phi2, lam2); TAB;
@@ -125,11 +125,12 @@ process(FILE *fid) {
 		(void)fputs(s, stdout);
 	}
 }
-
-static char *pargv[MAX_PARGS];
-static int   pargc = 0;
-
-int main(int argc, char **argv) {
+    static char
+*pargv[MAX_PARGS];
+	static int
+pargc = 0;
+	void
+main(int argc, char **argv) {
 	char *arg, **eargv = argv, *strnchr();
 	FILE *fid;
 	static int eargc = 0, c;
@@ -177,20 +178,22 @@ noargument:		   emess(1,"missing argument for -%c",*arg);
 				continue;
 			case 'l':
 				if (!arg[1] || arg[1] == 'e') { /* list of ellipsoids */
-                                    struct PJ_ELLPS *le;
-                                    
-                                    for (le = pj_ellps; le->id ; ++le)
-                                        (void)printf("%9s %-16s %-16s %s\n",
-                                                     le->id, le->major, le->ell, le->name);
+					struct PJ_ELLPS *le;
+	
+					for (le = pj_ellps; le->id ; ++le)
+						(void)printf("%9s %-16s %-16s %s\n",
+						le->id, le->major, le->ell, le->name);
+				 		emess(1,"invalid list option: l%c",arg[1]);
+							emess(1,"-l[p|e] terminates program");
 				} else if (arg[1] == 'u') { /* list of units */
-                                    struct PJ_UNITS *lu;
-                                    
-                                    for (lu = pj_units; lu->id ; ++lu)
-                                        (void)printf("%12s %-20s %s\n",
-                                                     lu->id, lu->to_meter, lu->name);
+					struct PJ_UNITS *lu;
+
+					for (lu = pj_units; lu->id ; ++lu)
+						(void)printf("%12s %-20s %s\n",
+				 			lu->id, lu->to_meter, lu->name);
 				} else
-                                    emess(1,"invalid list option: l%c",arg[1]);
-                                exit( 0 );
+					emess(1,"invalid list option: l%c",arg[1]);
+				emess(1,"will not proceed after display list option");
 			case 'p': /* output azimuths as positive */
 				pos_azi = 1;
 				continue;

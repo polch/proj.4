@@ -29,15 +29,6 @@
  ******************************************************************************
  *
  * $Log$
- * Revision 1.7  2003/03/25 17:53:13  warmerda
- * modified so that -f formats are used for Z as well
- *
- * Revision 1.6  2002/12/09 16:01:02  warmerda
- * added prime meridian support
- *
- * Revision 1.5  2002/11/19 20:33:42  warmerda
- * cleanup before exit to facilitate memory leak testing
- *
  * Revision 1.4  2001/04/05 19:32:19  warmerda
  * use projPJ, and pj_is_latlong()
  *
@@ -172,10 +163,7 @@ static void process(FILE *fid)
         }
 
         putchar(' ');
-        if( oform != NULL )
-            printf( oform, z );
-        else
-            printf( "%.3f", z );
+        printf( "%.3f", z );
         fputs("\n", stdout );
     }
 }
@@ -270,12 +258,6 @@ int main(int argc, char **argv)
                         if( ld->comments != NULL && strlen(ld->comments) > 0 )
                             printf( "%25s %s\n", " ", ld->comments );
                     }
-                } else if( arg[1] == 'm') { /* list prime meridians */
-                    struct PJ_PRIME_MERIDIANS *lpm;
-
-                    for (lpm = pj_prime_meridians; lpm->id ; ++lpm)
-                        (void)printf("%12s %-30s\n",
-                                     lpm->id, lpm->defn);
                 } else
                     emess(1,"invalid list option: l%c",arg[1]);
                 exit(0);
@@ -426,13 +408,5 @@ int main(int argc, char **argv)
         fclose(fid);
         emess_dat.File_name = 0;
     }
-
-    if( fromProj != NULL )
-        pj_free( fromProj );
-    if( toProj != NULL )
-        pj_free( toProj );
-
-    pj_deallocate_grids();
-
     exit(0); /* normal completion */
 }

@@ -1,41 +1,8 @@
-/******************************************************************************
- * $Id$
- *
- * Project:  PROJ.4
- * Purpose:  Implementation of the aea (Albers Equal Area) projection.
- * Author:   Gerald Evenden
- *
- ******************************************************************************
- * Copyright (c) 1995, Gerald Evenden
- *
- * Permission is hereby granted, free of charge, to any person obtaining a
- * copy of this software and associated documentation files (the "Software"),
- * to deal in the Software without restriction, including without limitation
- * the rights to use, copy, modify, merge, publish, distribute, sublicense,
- * and/or sell copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included
- * in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
- * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE.
- ******************************************************************************
- *
- * $Log$
- * Revision 1.4  2003/08/18 15:21:23  warmerda
- * fixed initialization of en variable
- *
- * Revision 1.3  2002/12/14 19:27:06  warmerda
- * updated header
- *
- */
-
+#ifndef lint
+static const char SCCSID[]="@(#)PJ_aea.c	4.2	94/03/18	GIE	REL";
+#endif
+# define EPS10	1.e-10
+# define TOL7	1.e-7
 #define PROJ_PARMS__ \
 	double	ec; \
 	double	n; \
@@ -48,15 +15,8 @@
 	double	phi2; \
 	double	*en; \
 	int		ellips;
-
 #define PJ_LIB__
-#include <projects.h>
-
-PJ_CVSID("$Id$");
-
-# define EPS10	1.e-10
-# define TOL7	1.e-7
-
+# include	<projects.h>
 PROJ_HEAD(aea, "Albers Equal Area")
 	"\n\tConic Sph&Ell\n\tlat_1= lat_2=";
 PROJ_HEAD(leac, "Lambert Equal Area Conic")
@@ -161,11 +121,11 @@ setup(PJ *P) {
 	P->inv = e_inverse; P->fwd = e_forward;
 	return P;
 }
-ENTRY1(aea,en)
+ENTRY0(aea)
 	P->phi1 = pj_param(P->params, "rlat_1").f;
 	P->phi2 = pj_param(P->params, "rlat_2").f;
 ENDENTRY(setup(P))
-ENTRY1(leac,en)
+ENTRY0(leac)
 	P->phi2 = pj_param(P->params, "rlat_1").f;
 	P->phi1 = pj_param(P->params, "bsouth").i ? - HALFPI: HALFPI;
 ENDENTRY(setup(P))

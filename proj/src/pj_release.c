@@ -1,11 +1,6 @@
 /* <<< Release Notice for library >>> */
+#ifndef lint
+static const char SCCSID[]="@(#)pj_release.c	4.5 95/09/23 GIE REL";
+#endif
 
-#include <projects.h>
-
-char const pj_release[]="Rel. 4.4.8, 3 May 2004";
-
-const char *pj_get_release()
-
-{
-    return pj_release;
-}
+char const pj_release[]="Rel. 4.4.3, 20 April 2001";

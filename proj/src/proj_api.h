@@ -28,33 +28,6 @@
  ******************************************************************************
  *
  * $Log$
- * Revision 1.10  2004/05/04 03:28:01  warmerda
- * Updated version.
- *
- * Revision 1.9  2004/04/15 13:56:24  warmerda
- * added pj_get_release
- *
- * Revision 1.8  2003/03/31 14:52:38  warmerda
- * updated to 4.4.7
- *
- * Revision 1.7  2002/12/14 20:14:35  warmerda
- * added geocentric support
- *
- * Revision 1.6  2002/06/11 18:08:25  warmerda
- * Added the pj_get_def() function
- *
- * Revision 1.5  2002/01/09 14:36:22  warmerda
- * updated to 4.4.5
- *
- * Revision 1.4  2001/09/15 22:55:28  warmerda
- * final prep for 4.4.4 release
- *
- * Revision 1.3  2001/08/23 20:25:55  warmerda
- * added pj_set_finder function
- *
- * Revision 1.2  2001/06/02 03:35:36  warmerda
- * added pj_get_errno_ref()
- *
  * Revision 1.1  2001/04/06 01:24:22  warmerda
  * New
  *
@@ -73,7 +46,7 @@ extern "C" {
 #endif
 
 /* Try to update this every version! */
-#define PJ_VERSION 448
+#define PJ_VERSION 443
 
 extern char const pj_release[]; /* global release id string */
 
@@ -115,19 +88,14 @@ int pj_apply_gridshift( const char *, int,
                         double *x, double *y, double *z );
 void pj_deallocate_grids();
 int pj_is_latlong(projPJ);
-int pj_is_geocent(projPJ);
 void pj_pr_list(projPJ);
 void pj_free(projPJ);
-void pj_set_finder( const char *(*)(const char *) );
 projPJ pj_init(int, char **);
 projPJ pj_init_plus(const char *);
-char *pj_get_def(projPJ, int);
 projPJ pj_latlong_from_proj( projPJ );
 void *pj_malloc(size_t);
 void pj_dalloc(void *);
 char *pj_strerrno(int);
-int *pj_get_errno_ref();
-const char *pj_get_release();
 
 #ifdef __cplusplus
 }

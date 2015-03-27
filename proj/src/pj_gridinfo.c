@@ -811,6 +811,65 @@ static int pj_gridinfo_init_gtx( projCtx ctx, PAFile fid, PJ_GRIDINFO *gi )
 }
 
 /************************************************************************/
+/*                       pj_gridinfo_init_nofile()                      */
+/*                                                                      */
+/*      Load a nofile numeric vertical datum shift value.               */
+/************************************************************************/
+
+static int pj_gridinfo_init_nofile( projCtx ctx, PJ_GRIDINFO *gi )
+
+{
+    char * endptr;
+    float val;
+    struct CTABLE *ct;
+    float * cvs;
+
+    /* To distinguish success/failure after call */
+    errno = 0;    
+
+    /* run the string to float conversion */
+    val = strtod(gi->gridname, &endptr);
+
+    /* Check for various possible errors */
+
+    if (errno == ERANGE && (val == -HUGE_VALF || val == HUGE_VALF || val == 0))
+    {
+        pj_log( ctx, PJ_LOG_ERROR,
+                "strtold failed : \"%s\" value overflow/underflow\n", gi->gridname);
+        return 0;
+    }
+    if (endptr == gi->gridname) 
+    {
+        pj_log( ctx, PJ_LOG_ERROR,
+                "strtold failed : no digits found\n");
+        return 0;
+    }
+
+/* -------------------------------------------------------------------- */
+/*      Fill in CTABLE structure.                                       */
+/* -------------------------------------------------------------------- */
+    ct = (struct CTABLE *) pj_malloc(sizeof(struct CTABLE));
+    strcpy( ct->id, "Nofile Vertical Grid Shift Value" );
+
+    ct->ll.lam = -180.0 * DEG_TO_RAD;
+    ct->ll.phi =  -90.0 * DEG_TO_RAD;
+    ct->del.lam = 360 * DEG_TO_RAD;
+    ct->del.phi = 180 * DEG_TO_RAD;
+    ct->lim.lam = 2;
+    ct->lim.phi = 2;
+
+    cvs = pj_malloc(4*sizeof(float));
+    if(cvs) cvs[0] = cvs[1] = cvs[2] = cvs[3] = val;
+
+    ct->cvs = (FLP *)cvs;
+
+    gi->ct = ct;
+    gi->format = "nofile";
+
+    return 1;
+}
+
+/************************************************************************/
 /*                          pj_gridinfo_init()                          */
 /*                                                                      */
 /*      Open and parse header details from a datum gridshift file       */
@@ -850,6 +909,9 @@ PJ_GRIDINFO *pj_gridinfo_init( projCtx ctx, const char *gridname )
     strcpy(fname, gridname);
     if (!(fp = pj_open_lib(ctx, fname, "rb"))) {
         ctx->last_errno = 0; /* don't treat as a persistent error */
+        pj_log( ctx, PJ_LOG_DEBUG_MAJOR,
+                "Fallback to \"nofile\" grid type");
+        pj_gridinfo_init_nofile( ctx, gilist );
         return gilist;
     }
 
